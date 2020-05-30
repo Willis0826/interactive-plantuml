@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 import SVGInject from '@iconfu/svg-inject';
+import { FormFile, Form, Button } from 'react-bootstrap';
+import bsCustomFileInput from 'bs-custom-file-input';
 
 class App extends React.Component {
 
@@ -22,9 +24,17 @@ class App extends React.Component {
     this.svgOnclick = this.svgOnclick.bind(this);
   }
 
+  componentDidMount() { // make file input custom
+    bsCustomFileInput.init();
+  }
+
   onFormSubmit(e) {
     e.preventDefault() // Stop form submit
-    var fr = new FileReader();
+    if (this.state.file == null) {
+      return
+    }
+
+    const fr = new FileReader();
     fr.onload = () => {
       this.setState({ fileData: fr.result });
     };
@@ -105,12 +115,16 @@ class App extends React.Component {
       <div className="App">
         <img style={{ display: 'block', width: '100%', height: 'auto' }} id="plantuml" src={this.state.fileData} className="injectable" onLoad={this.svgOnload} />
         <header className="App-header">
-          <h1>Enable your plantuml svg to be interactive</h1>
-          <form onSubmit={this.onFormSubmit}>
-            <h1>File Upload</h1>
-            <input type="file" onChange={this.onChange} />
-            <button type="submit">Render</button>
-          </form>
+          <h1>Enable your PlantUML svg to be interactive</h1>
+          <Form onSubmit={this.onFormSubmit}>
+            <Form.File 
+              onChange={this.onChange}
+              id="custom-file"
+              label="*.svg"
+              custom
+            />
+            <Button type="submit" variant="info">Render</Button>
+          </Form>
         </header>
       </div>
     );
