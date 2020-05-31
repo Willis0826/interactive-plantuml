@@ -1,3 +1,4 @@
+import ReactGA from 'react-ga';
 import React from 'react';
 import './App.css';
 import githubIcon from './img/github-w.png';
@@ -39,6 +40,13 @@ class App extends React.Component {
   }
 
   onFormSubmit(e) {
+
+    ReactGA.event({
+      category: 'svg',
+      action: 'On svg submit',
+      label: this.state.file?this.state.file.name:'no file selected'
+    });
+
     e.preventDefault() // Stop form submit
     if (this.state.file == null) {
       this.toggleWarning(true);
@@ -158,7 +166,7 @@ class App extends React.Component {
               <a href="#section2">
                 <span className="text-info know-more-link">
                   know more
-                  <img style={{width: '50px'}} src={arrowDown} />
+                  <img alt="" style={{width: '50px'}} src={arrowDown} />
                 </span>
               </a>
             </div>
