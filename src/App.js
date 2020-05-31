@@ -192,7 +192,7 @@ class App extends React.Component {
               </a>
             </div>
           </Container>
-          <Container style={{ position: "relative" }}>
+          <div style={{ width: '100%', position: "relative" }}>
             <Container className="right-info-card">
               <Row>
                 <Col>
@@ -238,7 +238,7 @@ class App extends React.Component {
                 right: 0
               }}
             />
-          </Container>
+          </div>
         </header>
       </div>
     );
