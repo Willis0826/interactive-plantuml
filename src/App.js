@@ -159,7 +159,10 @@ class App extends React.Component {
           </a>
           <Container>
             <div className="full-view">
-              <h1>Enable your PlantUML svg to be interactive</h1>
+              <h1 style={{fontWeight: 100}}>
+                Enable your <span className="large-bold-keyword">PlantUML</span><br />
+                to be <span className="large-bold-keyword">interactive</span>
+              </h1>
               <Form onSubmit={this.onFormSubmit}>
                 <Form.Row className="d-flex justify-content-center">
                   <Form.Group>
@@ -183,34 +186,42 @@ class App extends React.Component {
 
               <a href="#section2">
                 <span className="text-info know-more-link">
-                  know more
                   <img alt="" style={{ width: "50px" }} src={arrowDown} />
                 </span>
               </a>
             </div>
-            <hr className="solid-white-border" />
+          </Container>
+          <Container className="right-info-card">
             <Row>
               <Col>
-                <h2 id="section2">How it works?</h2>
-                <ol>
-                  <li>
-                    You can transform your PlantUML into svg and download it
-                    with
-                    <a
-                      rel="noopener noreferrer"
-                      target="_blank"
-                      href="https://www.planttext.com/"
-                    >
-                      {" "}
-                      planttext
-                    </a>
-                  </li>
-                  <li>
-                    Let the site analyze your svg and make it interactable. The
-                    most important is, all happend in browser no content will be
-                    transfer thought network.
-                  </li>
-                </ol>
+                <h2 id="section2">Prepare the svg of your PlantUML</h2>
+                <p>
+                  You can transform your PlantUML into svg and download it with
+                  <a
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    href="https://www.planttext.com/"
+                  >
+                    {" "}
+                    planttext
+                  </a>
+                  <br />
+                  Once you got your svg ready, you are good to go.
+                </p>
+              </Col>
+            </Row>
+          </Container>
+          <Container className="left-info-card">
+            <Row>
+              <Col>
+                <h2>Let the site do the magic for you</h2>
+                <p>
+                  Put the svg in here, the site will analyze the svg and make it
+                  interactable. A diagram you can interactive with is what you
+                  need. The most imporant is, all the magic done in your
+                  browser. That's said, Your diagam is safe and the site won't
+                  keep the data.
+                </p>
               </Col>
             </Row>
           </Container>
