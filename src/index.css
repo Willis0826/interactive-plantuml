@@ -43,11 +43,3 @@ code {
   justify-content: center;
 }
 
-.know-more-link {
-  width: 100px;
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  margin-left: -50px;
-  font-size: 18px;
-}

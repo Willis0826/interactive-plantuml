@@ -1,8 +1,9 @@
 import ReactGA from "react-ga";
 import React from "react";
 import "./App.css";
+import fact from "./img/fact.svg";
 import githubIcon from "./img/github-w.png";
-import arrowDown from "./img/arrow-down.gif";
+import arrowDown from "./img/arrow.svg";
 import SVGInject from "@iconfu/svg-inject";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import bsCustomFileInput from "bs-custom-file-input";
@@ -159,8 +160,9 @@ class App extends React.Component {
           </a>
           <Container>
             <div className="full-view">
-              <h1 style={{fontWeight: 100}}>
-                Enable your <span className="large-bold-keyword">PlantUML</span><br />
+              <h1 style={{ fontWeight: 100 }}>
+                Enable your <span className="large-bold-keyword">PlantUML</span>
+                <br />
                 to be <span className="large-bold-keyword">interactive</span>
               </h1>
               <Form onSubmit={this.onFormSubmit}>
@@ -174,7 +176,7 @@ class App extends React.Component {
                     />
                     {this.state.showWarning ? (
                       <Form.Text className="text-warning-light">
-                        Please select one *.svg you want
+                        Please select one *.svg
                       </Form.Text>
                     ) : null}
                   </Form.Group>
@@ -184,46 +186,58 @@ class App extends React.Component {
                 </Button>
               </Form>
 
-              <a href="#section2">
-                <span className="text-info know-more-link">
-                  <img alt="" style={{ width: "50px" }} src={arrowDown} />
-                </span>
+              <a className="know-more-link" href="#section2">
+                <object data={arrowDown}></object>
+                <span></span>
               </a>
             </div>
           </Container>
-          <Container className="right-info-card">
-            <Row>
-              <Col>
-                <h2 id="section2">Prepare the svg of your PlantUML</h2>
-                <p>
-                  You can transform your PlantUML into svg and download it with
-                  <a
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    href="https://www.planttext.com/"
-                  >
-                    {" "}
-                    planttext
-                  </a>
-                  <br />
-                  Once you got your svg ready, you are good to go.
-                </p>
-              </Col>
-            </Row>
-          </Container>
-          <Container className="left-info-card">
-            <Row>
-              <Col>
-                <h2>Let the site do the magic for you</h2>
-                <p>
-                  Put the svg in here, the site will analyze the svg and make it
-                  interactable. A diagram you can interactive with is what you
-                  need. The most imporant is, all the magic done in your
-                  browser. That's said, Your diagam is safe and the site won't
-                  keep the data.
-                </p>
-              </Col>
-            </Row>
+          <Container style={{ position: "relative" }}>
+            <Container className="right-info-card">
+              <Row>
+                <Col>
+                  <h2 id="section2">Prepare the svg of your PlantUML</h2>
+                  <p>
+                    You can transform your PlantUML into svg and download it
+                    with
+                    <a
+                      style={{ marginLeft: '2px' }}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      href="https://www.planttext.com/"
+                    >
+                      planttext
+                    </a>
+                    <br />
+                    Once you got your svg ready, you are good to go.
+                  </p>
+                </Col>
+              </Row>
+            </Container>
+            <Container className="left-info-card">
+              <Row>
+                <Col>
+                  <h2>Let the site do the magic</h2>
+                  <p>
+                    Put the svg in here, the site will analyze the svg and make
+                    it interactable. A diagram you can interactive with is what
+                    you need. The most imporant is, all the magic done in your
+                    browser. That's said, Your diagam is safe and the site won't
+                    keep the data.
+                  </p>
+                </Col>
+              </Row>
+            </Container>
+            <img
+              alt=""
+              src={fact}
+              style={{
+                width: "300px",
+                position: "absolute",
+                bottom: 0,
+                right: 0
+              }}
+            />
           </Container>
         </header>
       </div>
