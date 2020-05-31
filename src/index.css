@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +14,40 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.text-warning-light {
+  color: #fff3cd!important;
+}
+
+.custom-file-label {
+  overflow-x: hidden;
+}
+
+.fix-upper-right {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  width: 35px;
+}
+
+.solid-white-border {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.full-view {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.know-more-link {
+  width: 100px;
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  margin-left: -50px;
+  font-size: 18px;
 }

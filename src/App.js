@@ -1,7 +1,9 @@
 import React from 'react';
 import './App.css';
+import githubIcon from './img/github-w.png';
+import arrowDown from './img/arrow-down.gif';
 import SVGInject from '@iconfu/svg-inject';
-import { FormFile, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import bsCustomFileInput from 'bs-custom-file-input';
 
 class App extends React.Component {
@@ -11,6 +13,7 @@ class App extends React.Component {
     this.state = {
       file: null,
       fileData: null,
+      showWarning: false,
     };
 
     this.iframe = null;
@@ -28,9 +31,17 @@ class App extends React.Component {
     bsCustomFileInput.init();
   }
 
+  toggleWarning(show) {
+    if (show !== undefined) {
+      return this.setState({ showWarning: show })
+    }
+    return this.setState({ showWarning: !this.state.showWarning})
+  }
+
   onFormSubmit(e) {
     e.preventDefault() // Stop form submit
     if (this.state.file == null) {
+      this.toggleWarning(true);
       return
     }
 
@@ -43,6 +54,7 @@ class App extends React.Component {
 
   onChange(e) {
     this.setState({ file: e.target.files[0] })
+    this.toggleWarning(false);
   }
 
   async svgOnload() {
@@ -80,6 +92,8 @@ class App extends React.Component {
         elementIndex++;
       })
     })
+
+    window.scrollTo(0, 0); // scroll to top
   }
 
   svgOnclick(e) {
@@ -113,18 +127,57 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <img style={{ display: 'block', width: '100%', height: 'auto' }} id="plantuml" src={this.state.fileData} className="injectable" onLoad={this.svgOnload} />
+        <img alt="" style={{ display: 'block', width: '100%', height: 'auto' }} id="plantuml" src={this.state.fileData} className="injectable" onLoad={this.svgOnload} />
         <header className="App-header">
-          <h1>Enable your PlantUML svg to be interactive</h1>
-          <Form onSubmit={this.onFormSubmit}>
-            <Form.File 
-              onChange={this.onChange}
-              id="custom-file"
-              label="*.svg"
-              custom
-            />
-            <Button type="submit" variant="info">Render</Button>
-          </Form>
+          <a rel="noopener noreferrer" target="_blank" href="https://github.com/Willis0826/interactive-plantuml">
+            <img alt="" src={githubIcon} className="fix-upper-right"/>
+          </a>
+          <Container>
+            <div className="full-view">
+              <h1>Enable your PlantUML svg to be interactive</h1>
+              <Form onSubmit={this.onFormSubmit}>
+                <Form.Row className="d-flex justify-content-center">
+                  <Form.Group>
+                    <Form.File
+                      onChange={this.onChange}
+                      id="custom-file"
+                      label="Drag or select your *.svg"
+                      custom
+                    />
+                    {
+                      this.state.showWarning?
+                      <Form.Text className="text-warning-light">
+                        Please select one *.svg you want
+                      </Form.Text>:null
+                    }
+                  </Form.Group>
+                </Form.Row>
+                <Button size="lg" type="submit" variant="info">Render</Button>
+              </Form>
+
+              <a href="#section2">
+                <span className="text-info know-more-link">
+                  know more
+                  <img style={{width: '50px'}} src={arrowDown} />
+                </span>
+              </a>
+            </div>
+            <hr className="solid-white-border"/>
+            <Row>
+              <Col>
+                <h2 id="section2">How it works?</h2>
+                <ol>
+                  <li>
+                    You can transform your PlantUML into svg and download it with
+                    <a rel="noopener noreferrer" target="_blank" href="https://www.planttext.com/"> planttext</a>
+                  </li>
+                  <li>
+                    Let the site analyze your svg and make it interactable. The most important is, all happend in browser no content will be transfer thought network.
+                  </li>
+                </ol>
+              </Col>
+            </Row>
+          </Container>
         </header>
       </div>
     );
